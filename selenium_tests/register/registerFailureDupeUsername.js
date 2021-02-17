@@ -3,21 +3,23 @@ require("colors");
 const baseUrl = 'http://localhost:3000/';
 let driver = new webdriver.Builder().forBrowser("chrome").build();
 
-async function registerSuccess() {
+async function registerFailureDuplicateUsername() {
     try {
         await driver.get(`${baseUrl}signup`);
-        await driver.findElement(webdriver.By.name("username")).sendKeys("jreidmke");
+        await driver.findElement(webdriver.By.name("username")).sendKeys("testuser");
         await driver.findElement(webdriver.By.name("password")).sendKeys("password");
         await driver.findElement(webdriver.By.name("firstName")).sendKeys("James");
         await driver.findElement(webdriver.By.name("lastName")).sendKeys("Reid");
         await driver.findElement(webdriver.By.name("email")).sendKeys("jreidmke@gmail.com\n");
         await driver.sleep(2000);
         const title = await driver.getTitle();
+        const warningText = await driver.findElement(webdriver.By.xpath("//*[text()='Duplicate username: testuser']")).getText();
         console.log(title);
-        if(title.includes("Company List")) {
-            console.log('Register Success Test Passed'.green);
+        console.log(warningText);
+        if(title.includes("Registration Form") && warningText==="Duplicate username: testuser") {
+            console.log('Register Failure Test Passed'.green);
         } else {
-            console.log('Register Success Test Failed'.red);
+            console.log('Register Failure Test Failed'.red);
         }
     } catch (error) {
         console.error(error);
@@ -27,4 +29,5 @@ async function registerSuccess() {
         }
     }
 };
-registerSuccess();
+registerFailureDuplicateUsername();
+
