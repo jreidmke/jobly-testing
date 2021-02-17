@@ -11,8 +11,9 @@ async function companyDetailsView() {
         await driver.sleep(2000);
         await driver.findElement(webdriver.By.xpath("//*[text()='Anderson, Arias and Morrow']")).click();
         await driver.sleep(500);
+        const title = await driver.getTitle();
         const jobListingText = await driver.findElement(webdriver.By.xpath("//*[text()='Technical brewer']")).getText();
-        if(jobListingText) {
+        if(jobListingText && title.includes("anderson-arias-morrow")) {
             console.log("Company List Search Test Passed".green);
         } else {
             console.log("Company List Search Test Failed".red);
