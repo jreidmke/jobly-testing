@@ -17,9 +17,9 @@ async function updateProfileFailure() {
         title = await driver.getTitle();
         const failureText = driver.findElement(webdriver.By.xpath("//*[text()='instance.password does not meet minimum length of 5']"));
         if(title.includes("Update Profile") && failureText) {
-            console.log("Profile Update Submit Fail Test Passed".green)
+            console.log("Profile Update Submit Fail Test Passed".green);
         } else {
-            console.log("Profile Update Submit Fail Test Failed".red)
+            console.log("Profile Update Submit Fail Test Failed".red);
         }
     } catch (error) {
         console.error(error);
