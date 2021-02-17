@@ -23,5 +23,3 @@ async function loginView() {
     }
 };
 loginView();
-
-module.exports = loginView;

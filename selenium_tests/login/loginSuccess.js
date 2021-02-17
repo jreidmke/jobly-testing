@@ -7,8 +7,7 @@ async function loginSuccess() {
     try {
         await driver.get(`${baseUrl}login`);
         await driver.findElement(webdriver.By.id("usernameInput")).sendKeys("testuser");
-        await driver.findElement(webdriver.By.id("passwordInput")).sendKeys("password");
-        await driver.findElement(webdriver.By.id("submitBtn")).click();
+        await driver.findElement(webdriver.By.id("passwordInput")).sendKeys("password\n");
         await driver.sleep(2000);
         const title = await driver.getTitle();
         console.log(title);
@@ -26,5 +25,3 @@ async function loginSuccess() {
     }
 };
 loginSuccess();
-
-module.exports = loginSuccess;
