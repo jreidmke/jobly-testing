@@ -1,12 +1,12 @@
 const webdriver = require('selenium-webdriver');
 require("colors");
+const baseUrl = 'http://localhost:3000/';
+let driver = new webdriver.Builder().forBrowser("chrome").build();
 
 async function loginView() {
-    let driver;
     try {
-        driver = new webdriver.Builder().forBrowser("chrome").build();
-        await driver.get('http://localhost:3000/login');
-        // (await driver.findElement(webdriver.By.name("loginBtn"))).click();
+        await driver.get(baseUrl);
+        await driver.findElement(webdriver.By.name("loginBtn")).click();
         const formTitle = await driver.findElement(webdriver.By.id("LoginFormTitle")).getText();
         console.log(formTitle);
         if(formTitle === 'Log In Form') {
@@ -22,7 +22,6 @@ async function loginView() {
         }
     }
 };
-
 loginView();
 
-// await (await driver).findElement(webdriver.By.className("LoginForm")).getText();
+module.exports = loginView;
