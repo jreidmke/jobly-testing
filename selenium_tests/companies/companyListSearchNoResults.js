@@ -3,7 +3,7 @@ require("colors");
 const baseUrl = 'http://localhost:3000/';
 let driver = new webdriver.Builder().forBrowser("chrome").build();
 
-async function companyListSearch() {
+async function companyListSearchNoResults() {
     try {
         await driver.get(`${baseUrl}login`);
         await driver.findElement(webdriver.By.id("usernameInput")).sendKeys("testuser");
@@ -26,4 +26,4 @@ async function companyListSearch() {
     }
 };
 
-companyListSearch();
+companyListSearchNoResults();
